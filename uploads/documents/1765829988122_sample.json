@@ -1,0 +1,322 @@
+[
+  {
+    "Name": "Implement Efficiencies",
+    "Description": "Lead Financial Analyst FP&A – Management",
+    "Effectively Used": "Identifies and executes process improvements to streamline reporting and forecasting.",
+    "Under Used": "Opportunities for automation and technology upgrades not always fully pursued.",
+    "Over Used": "Over-focusing on efficiency gains may reduce flexibility or overlook quality.",
+    "Development Actions": "Document one automation opportunity per quarter; track ROI and impact on accuracy."
+  },
+  {
+    "Name": "Lead Transformation",
+    "Description": "Lead Financial Analyst FP&A – Management",
+    "Effectively Used": "Guides FP&A transformation initiatives that align with corporate strategy and efficiency goals.",
+    "Under Used": "Not all transformation opportunities are identified or prioritized.",
+    "Over Used": "Too much focus on transformation may disrupt daily operations.",
+    "Development Actions": "Create a transformation backlog with prioritization by impact and feasibility."
+  },
+  {
+    "Name": "Change Champion",
+    "Description": "Lead Financial Analyst FP&A – Management",
+    "Effectively Used": "Advocates for improvements, driving adoption of new systems and processes.",
+    "Under Used": "May not always link change initiatives to tangible business outcomes.",
+    "Over Used": "Over-pushing change without sufficient buy-in can create resistance.",
+    "Development Actions": "Link at least two changes to measurable business outcomes; solicit stakeholder sign-off."
+  },
+  {
+    "Name": "Data Integrity Steward",
+    "Description": "FP&A Data Steward",
+    "Effectively Used": "Ensures data quality, traceability, and auditability across reports.",
+    "Under Used": "Data lineage and validation checks not consistently applied.",
+    "Over Used": "Excessive data validation can slow reporting cycles.",
+    "Development Actions": "Implement lightweight data lineage dashboards; schedule quarterly data quality reviews."
+  },
+  {
+    "Name": "Forecast Accuracy Driver",
+    "Description": "Senior Analyst – Forecasting",
+    "Effectively Used": "Improves forecast accuracy through scenario analysis and variance tracking.",
+    "Under Used": "Reliance on historical trends without incorporating new drivers.",
+    "Over Used": "Overfitting to past data, reducing model robustness.",
+    "Development Actions": "Add 2 new driver scenarios per forecast cycle; monitor out-of-sample performance."
+  },
+  {
+    "Name": "Automation Advocate",
+    "Description": "Analytics Team Lead",
+    "Effectively Used": "Champions automation opportunities and drives adoption.",
+    "Under Used": "Opportunities are not consistently mapped to business outcomes.",
+    "Over Used": "Over-automation risk if benefits are unclear.",
+    "Development Actions": "Pair automation projects with expected ROI and a monitoring plan."
+  },
+  {
+    "Name": "Compliance Whisperer",
+    "Description": "Risk and Compliance Controller",
+    "Effectively Used": "Ensures processes comply with applicable standards.",
+    "Under Used": "Compliance checks are performed late in the process.",
+    "Over Used": "Overly rigid checks can slow innovation.",
+    "Development Actions": "Build early-stage compliance gates; integrate with design reviews."
+  },
+  {
+    "Name": "Stakeholder Synchronizer",
+    "Description": "Program Manager",
+    "Effectively Used": "Aligns cross-functional stakeholders around goals and timelines.",
+    "Under Used": "Stakeholder engagement not systematically tracked.",
+    "Over Used": "Frequent meetings without clear outcomes.",
+    "Development Actions": "Create a stakeholder map and cadence plan with documented decisions."
+  },
+  {
+    "Name": "Quality Assurance Guardian",
+    "Description": "QA Lead",
+    "Effectively Used": "Maintains product quality through testing and validation.",
+    "Under Used": "Test coverage gaps across features.",
+    "Over Used": "Over-testing causing delays with diminishing returns.",
+    "Development Actions": "Implement risk-based testing and maintain a living test matrix."
+  },
+  {
+    "Name": "Risk Appetite Translator",
+    "Description": "Risk Manager",
+    "Effectively Used": "Interprets risk appetite into actionable controls.",
+    "Under Used": "Risk thresholds are not translated into concrete limits.",
+    "Over Used": "Overly conservative limits stall progress.",
+    "Development Actions": "Define concrete tolerances and alerting thresholds; review quarterly."
+  },
+  {
+    "Name": "Insight Builder",
+    "Description": "Data Scientist",
+    "Effectively Used": "Transforms raw data into actionable business insights.",
+    "Under Used": "Insights not linked to decision-makers’ needs.",
+    "Over Used": "Overloading stakeholders with too many dashboards.",
+    "Development Actions": "Map each insight to a decision workflow; maintain a KPI log."
+  },
+  {
+    "Name": "Process Improver",
+    "Description": "Process Engineer",
+    "Effectively Used": "Identifies bottlenecks and suggests improvements.",
+    "Under Used": "Opportunities not documented or tested.",
+    "Over Used": "Change fatigue from too many minor improvements.",
+    "Development Actions": "Pilot high-impact improvements; track before/after metrics."
+  },
+  {
+    "Name": "Strategic Communicator",
+    "Description": "Communications Lead",
+    "Effectively Used": "Delivers clear strategic messages to executives and teams.",
+    "Under Used": "Messaging lacks concrete actions or next steps.",
+    "Over Used": "Overemphasis on vision without operational detail.",
+    "Development Actions": "Include actionable next steps with owners in every brief."
+  },
+  {
+    "Name": "Customer Insight Integrator",
+    "Description": "Product Manager",
+    "Effectively Used": "Integrates customer feedback into product decisions.",
+    "Under Used": "Feedback is collected but not prioritized.",
+    "Over Used": "Over-prioritizing feedback without balance.",
+    "Development Actions": "Create a feedback triage framework and prioritization rubric."
+  },
+  {
+    "Name": "Resource Optimizer",
+    "Description": "Operations Manager",
+    "Effectively Used": "Allocates resources to maximize throughput.",
+    "Under Used": "Resource constraints not fully modeled.",
+    "Over Used": "Over-allocation to high-ROI projects at the expense of others.",
+    "Development Actions": "Build a resource forecast model; run quarterly optimization."
+  },
+  {
+    "Name": "Data Democratizer",
+    "Description": "BI Specialist",
+    "Effectively Used": "Makes data accessible to non-technical teammates.",
+    "Under Used": "Tables and dashboards not self-serve.",
+    "Over Used": "Overly broad access risking data governance.",
+    "Development Actions": "Create role-based dashboards with clear governance rules."
+  },
+  {
+    "Name": "Innovation Catalyst",
+    "Description": "R&D Lead",
+    "Effectively Used": "Fosters a culture of experimentation and new ideas.",
+    "Under Used": "Experiments not documented or scaled.",
+    "Over Used": "Too many experiments with unclear ROI.",
+    "Development Actions": "Implement a lightweight experimentation framework with ROI tracking."
+  },
+  {
+    "Name": "Performance Coach",
+    "Description": "People Manager",
+    "Effectively Used": "Coaches teams to improve performance and skills.",
+    "Under Used": "Development conversations are infrequent.",
+    "Over Used": "Over-emphasis on performance without support.",
+    "Development Actions": "Schedule regular coaching with progress milestones."
+  },
+  {
+    "Name": "Data Privacy Guardian",
+    "Description": "Compliance/Data Officer",
+    "Effectively Used": "Protects sensitive information and ensures privacy controls.",
+    "Under Used": "Privacy reviews not integrated into design cycles.",
+    "Over Used": "Excessive data masking slows testing.",
+    "Development Actions": "Embed privacy reviews into design sprints; document data handling."
+  },
+  {
+    "Name": "Technical Mentor",
+    "Description": "Senior Engineer",
+    "Effectively Used": "Shares expertise and mentors junior staff.",
+    "Under Used": "Knowledge transfer is informal and irregular.",
+    "Over Used": "Over-dependence on a single expert.",
+    "Development Actions": "Schedule structured mentoring cohorts; capture learnings."
+  },
+  {
+    "Name": "Change Risk Moderator",
+    "Description": "Change Management Lead",
+    "Effectively Used": "Moderates risk and resistance during changes.",
+    "Under Used": "Resistance signals not acted upon promptly.",
+    "Over Used": "Excess focus on risk can stall progress.",
+    "Development Actions": "Implement a rapid response plan for resistance signals."
+  },
+  {
+    "Name": "Value Realization Pioneer",
+    "Description": "Business Analyst",
+    "Effectively Used": "Links projects to measurable business value.",
+    "Under Used": "Value mapping not updated with new initiatives.",
+    "Over Used": "Over-promising value without deliverables.",
+    "Development Actions": "Create a living value map with quarterly updates."
+  },
+  {
+    "Name": "Systems Thinker",
+    "Description": "Solutions Architect",
+    "Effectively Used": "Considers system-wide impacts of changes.",
+    "Under Used": "Siloed thinking limits holistic design.",
+    "Over Used": "Overcomplicating simple solutions.",
+    "Development Actions": "Run quarterly system walkthroughs with cross-functional teams."
+  },
+  {
+    "Name": "Stakeholder Advocate",
+    "Description": "Governance Lead",
+    "Effectively Used": "Represents stakeholder interests in decisions.",
+    "Under Used": "Stakeholder voices not captured in decisions.",
+    "Over Used": "Stakeholder pressure delaying critical choices.",
+    "Development Actions": "Maintain a decisions log with stakeholder inputs."
+  },
+  {
+    "Name": "Compliance Automator",
+    "Description": "DevOps/Compliance Engineer",
+    "Effectively Used": "Automates compliance checks in pipelines.",
+    "Under Used": "Automation coverage is incomplete.",
+    "Over Used": "Over-automation without risk analysis.",
+    "Development Actions": "Implement compliance gates on critical branches; document failures."
+  },
+  {
+    "Name": "Efficiency Seer",
+    "Description": "Process Improvement Analyst",
+    "Effectively Used": "Anticipates inefficiencies before they occur.",
+    "Under Used": "Proactive audits not routine.",
+    "Over Used": "Overemphasis on efficiency at expense of safety.",
+    "Development Actions": "Schedule proactive audits; publish findings and actions taken."
+  },
+  {
+    "Name": "Stakeholder Translator",
+    "Description": "Product Owner",
+    "Effectively Used": "Translates technical needs into business terms.",
+    "Under Used": "Technical debt not adequately communicated.",
+    "Over Used": "Jargon-heavy communications alienating non-technical stakeholders.",
+    "Development Actions": "Create plain-language briefs with impact scores."
+  },
+  {
+    "Name": "Automation Quality Advocate",
+    "Description": "Automation Engineer",
+    "Effectively Used": "Ensures automation outputs meet quality standards.",
+    "Under Used": "Quality checks run too late in pipelines.",
+    "Over Used": "Overly strict checks cause delays.",
+    "Development Actions": "Build lightweight quality gates; monitor defect rate."
+  },
+  {
+    "Name": "Knowledge Encoder",
+    "Description": "Knowledge Manager",
+    "Effectively Used": "Captures tacit knowledge into explicit formats.",
+    "Under Used": "Knowledge capture lagging behind execution.",
+    "Over Used": "Over-documentation slowing teams.",
+    "Development Actions": "Implement bite-sized knowledge captures; maintain searchable repository."
+  },
+  {
+    "Name": "Value Generator",
+    "Description": "Strategy Analyst",
+    "Effectively Used": "Identifies opportunities to create additional business value.",
+    "Under Used": "Opportunities not quantified.",
+    "Over Used": "Overcommitting to high-risk value bets.",
+    "Development Actions": "Prioritize value ideas with ROI estimates and risk scoring."
+  },
+  {
+    "Name": "Collaboration Leader",
+    "Description": "Team Lead",
+    "Effectively Used": "Fosters cross-team collaboration and knowledge sharing.",
+    "Under Used": "Collaboration rituals inconsistently followed.",
+    "Over Used": "Over-communication without concrete actions.",
+    "Development Actions": "Establish shared rituals with outcome-focused agendas."
+  },
+  {
+    "Name": "Digital Literacy Champion",
+    "Description": "IT Enablement Lead",
+    "Effectively Used": "Raises digital competence across teams.",
+    "Under Used": "Training uptake limited.",
+    "Over Used": "Training without application leads to fatigue.",
+    "Development Actions": "Implement hands-on microlearning linked to projects."
+  },
+  {
+    "Name": "Inquiry Facilitator",
+    "Description": "Research Lead",
+    "Effectively Used": "Encourages curiosity and structured questioning.",
+    "Under Used": "Asked questions not followed by investigations.",
+    "Over Used": "Over-questioning without action.",
+    "Development Actions": "Pair inquiry with an action log and outcomes."
+  },
+  {
+    "Name": "Reliability Engineer",
+    "Description": "System Reliability Lead",
+    "Effectively Used": "Ensures system reliability and uptime targets.",
+    "Under Used": "Monitoring gaps in rare failure modes.",
+    "Over Used": "Over-monitoring causing alert fatigue.",
+    "Development Actions": "Define critical reliability metrics and alert thresholds."
+  },
+  {
+    "Name": "Cost Conscious Manager",
+    "Description": "Financial Controller",
+    "Effectively Used": "Manages costs while maintaining value.",
+    "Under Used": "Cost optimization opportunities not tracked.",
+    "Over Used": "Cost-cutting harms quality or safety.",
+    "Development Actions": "Track cost-benefit of enhancements; set go/no-go criteria."
+  },
+  {
+    "Name": "Data-Driven Influencer",
+    "Description": "Communications Manager",
+    "Effectively Used": "Uses data to persuade stakeholders.",
+    "Under Used": "Data storytelling not standardized.",
+    "Over Used": "Over-reliance on data at the expense of empathy.",
+    "Development Actions": "Create data storytelling templates; train on visuals."
+  },
+  {
+    "Name": "Learning Quarterback",
+    "Description": "L&D Lead",
+    "Effectively Used": "Orchestrates learning plans tied to performance.",
+    "Under Used": "IDP links not consistently updated.",
+    "Over Used": "Excessive training without on-the-job application.",
+    "Development Actions": "Connect learning to on-the-job milestones; track transfer."
+  },
+  {
+    "Name": "Quality Conscious Designer",
+    "Description": "Design Engineer",
+    "Effectively Used": "Integrates quality considerations into design.",
+    "Under Used": "Quality gates bypassed in early design.",
+    "Over Used": "Overemphasis on perfection delaying progress.",
+    "Development Actions": "Implement early QA reviews in design sprints."
+  },
+  {
+    "Name": "Agility Advocate",
+    "Description": "Agile Coach",
+    "Effectively Used": "Promotes adaptive planning and iteration.",
+    "Under Used": "Agile practices not tailored to domain.",
+    "Over Used": "Excess process overhead for small tasks.",
+    "Development Actions": "Tailor agile rituals for engineering domains; measure sprint health."
+  },
+  {
+    "Name": "Documentation Evangelist",
+    "Description": "Technical Writer",
+    "Effectively Used": "Produces clear, maintainable documentation.",
+    "Under Used": "Documentation lag behind code and design.",
+    "Over Used": "Over-documentation without actionable updates.",
+    "Development Actions": "Maintain living docs with change logs; link to code DI."
+  }
+]
