@@ -41,7 +41,6 @@ const verifyAPIKey = async (req, res, next) => {
   }
 };
 
-
 router.post('/competency', verifyAPIKey, async (req, res) => {
   try {
     const { inputText } = req.body;
@@ -162,7 +161,6 @@ Rules:
         rawSample: aiRaw.slice(0, 500)
       });
     }
-    console.log(parsedArray);
     
     const log = new AILog({
       requestType: 'playground_test',
@@ -320,7 +318,6 @@ Rules:
         rawSample: aiRaw.slice(0, 500)
       });
     }
-    console.log(parsedArray);
     
     const log = new AILog({
       requestType: 'playground_test',
@@ -357,43 +354,6 @@ Rules:
     });
   }
 });
-// **NEW: Helper function to extract competency from malformed text responses**
-function extractCompetencyFromText(text) {
-  try {
-    const lines = text.split('\n').map(line => line.trim());
-    
-    // Look for common patterns
-    const descriptionMatch = lines.find(line => 
-      line.toLowerCase().includes('description') || 
-      line.length > 50 && !line.includes(':')
-    );
-    
-    const effectivelyMatch = lines.find(line => 
-      line.toLowerCase().includes('effectively') || 
-      line.toLowerCase().includes('used effectively')
-    );
-    
-    const underusedMatch = lines.find(line => 
-      line.toLowerCase().includes('under') || 
-      line.toLowerCase().includes('underused')
-    );
-    
-    const overusedMatch = lines.find(line => 
-      line.toLowerCase().includes('over') || 
-      line.toLowerCase().includes('overused')
-    );
-    
-    return {
-      description: descriptionMatch || text.substring(0, 200) + '...',
-      effectively_used: effectivelyMatch || '',
-      underused: underusedMatch || '',
-      overused: overusedMatch || ''
-    };
-  } catch {
-    return null;
-  }
-}
-
 
 router.post('/feedback', authenticateToken, async (req, res) => {
   try {
@@ -483,5 +443,309 @@ router.get('/feedback', authenticateToken, async (req, res) => {
     });
   }
 });
+
+// ✅ NEW: Detailed Competency Generation (API Key Auth)
+router.post('/competency/detail', verifyAPIKey, async (req, res) => {
+  try {
+    const { industry, organization, jobRole, competencyName } = req.body;
+    const startTime = Date.now();
+
+    // Validation
+    if (!industry || !jobRole || !competencyName) {
+      return res.status(400).json({
+        error: 'Missing required fields: industry, jobRole, competencyName'
+      });
+    }
+
+    const config = await AIConfiguration.findOne({ isActive: true });
+    if (!config) {
+      return res.status(500).json({
+        error: 'No active AI configuration found'
+      });
+    }
+
+    const openai = new OpenAI({ apiKey: config.apiKeyEncrypted });
+    const organizationContext = organization ? `Organization: ${organization}\n` : '';
+
+    const prompt = `Context:
+Industry: ${industry}
+${organizationContext}Job Role: ${jobRole}
+Competency: ${competencyName}
+
+Return ONLY valid JSON with these EXACT 8 keys:
+"summary", "behaviorIndicators", "proficiencyLevels", "developmentActions", "risksIfMissing", "risksIfOverused", "measurementMethods", "commonMisconceptions"`;
+
+    const completion = await openai.chat.completions.create({
+      model: config.modelName || 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content: 'Respond with VALID JSON ONLY. No markdown, no explanations, no extra text. Every string must be properly escaped with double quotes.'
+        },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.05,  // 🔥 EVEN LOWER - matches internal
+      max_tokens: 3000,   // 🔥 Matches internal
+      response_format: { type: 'json_object' }
+    });
+
+    const responseTime = Date.now() - startTime;
+    let generatedText = completion.choices[0].message.content || '';
+
+    // 🔥 IMPROVED JSON REPAIR - Matches internal route EXACTLY
+    let detailData;
+    try {
+      generatedText = generatedText
+        .trim()
+        .replace(/^```json\s*/g, '')
+        .replace(/\s*```$/g, '')
+        .replace(/^json\s*/gi, '')
+        .trim();
+
+      console.log('🔍 RAW API (first 500):', generatedText.slice(0, 500));
+      console.log('📏 API Length:', generatedText.length);
+
+      detailData = JSON.parse(generatedText);
+      console.log('✅ API DIRECT PARSE SUCCESS');
+
+    } catch (parseError) {
+      console.error('❌ API DIRECT PARSE FAILED');
+      
+      // 🔥 BETTER REGEX - Matches COMPLETE JSON objects only
+      const completeJsonMatch = generatedText.match(/\{[\s\S]*?"summary"[\s\S]*?"commonMisconceptions"[\s\S]*\}/);
+      
+      if (completeJsonMatch && completeJsonMatch[0].length > 500) {
+        try {
+          detailData = JSON.parse(completeJsonMatch[0]);
+          console.log('✅ API SMART REGEX: Complete JSON extracted');
+        } catch (regexError) {
+          console.error('❌ API SMART REGEX FAILED');
+          throw parseError;
+        }
+      } else {
+        // 🔥 ULTIMATE FALLBACK: Return raw text if all else fails
+        console.log('🔄 API ULTIMATE FALLBACK: Returning raw text');
+        return res.json({
+          success: true,
+          data: {
+            rawText: generatedText,
+            warning: 'JSON parsing failed, raw response returned',
+            partialData: {}
+          },
+          metadata: {
+            model: config.modelName,
+            tokens: completion.usage?.total_tokens || 0,
+            generationTimeMs: responseTime
+          }
+        });
+      }
+    }
+
+    // 🔥 SIMPLIFIED VALIDATION - Accept partial data (matches internal)
+    const requiredKeys = [
+      'summary', 'behaviorIndicators', 'proficiencyLevels', 
+      'developmentActions', 'risksIfMissing', 'risksIfOverused', 
+      'measurementMethods', 'commonMisconceptions'
+    ];
+
+    const missingKeys = requiredKeys.filter(key => !detailData[key]);
+    if (missingKeys.length === 8) { // All missing = total failure
+      console.error('❌ API NO VALID DATA FOUND');
+      throw new Error('No valid competency structure found');
+    }
+
+    console.log('✅ API PARTIAL SUCCESS - Missing keys:', missingKeys.length);
+    console.log('✅ API Available keys:', Object.keys(detailData));
+
+    // Log the generation (matches internal structure)
+    const log = new AILog({
+      requestType: 'competency_detail_api',
+      inputData: { industry, organization, jobRole, competencyName },
+      outputData: detailData,
+      modelUsed: config.modelName,
+      tokensUsed: completion.usage?.total_tokens || 0,
+      responseTimeMs: responseTime,
+      userId: req.apiKeyUser?.userId || 'api_client',  // Fallback for API key users
+      success: true,
+      metadata: {
+        missingKeys: missingKeys.length,
+        totalKeys: Object.keys(detailData).length,
+        endpoint: 'competency/detail',
+        authType: 'api_key'
+      }
+    });
+    await log.save();
+
+    // Success response (matches internal exactly)
+    res.json({
+      success: true,
+      data: detailData,
+      metadata: {
+        model: config.modelName,
+        tokens: completion.usage?.total_tokens || 0,
+        generationTimeMs: responseTime,
+        missingKeys: missingKeys  // ✅ Frontend uses this for warnings
+      }
+    });
+
+  } catch (error) {
+    console.error('💥 API FINAL ERROR:', error.message);
+    res.status(500).json({
+      error: 'Failed to generate competency detail',
+      message: error.message
+    });
+  }
+});
+// ✅ NEW: Detailed Competency Generation (JWT Auth) - for web app
+router.post('/competency/detail/internal', authenticateToken, async (req, res) => {
+  try {
+    const { industry, organization, jobRole, competencyName } = req.body;
+    const startTime = Date.now();
+
+    if (!industry || !jobRole || !competencyName) {
+      return res.status(400).json({
+        error: 'Missing required fields: industry, jobRole, competencyName'
+      });
+    }
+
+    const config = await AIConfiguration.findOne({ isActive: true });
+    if (!config) {
+      return res.status(500).json({
+        error: 'No active AI configuration found'
+      });
+    }
+
+    const openai = new OpenAI({ apiKey: config.apiKeyEncrypted });
+    const organizationContext = organization ? `Organization: ${organization}\n` : '';
+
+    const prompt = `Context:
+Industry: ${industry}
+${organizationContext}Job Role: ${jobRole}
+Competency: ${competencyName}
+
+Return ONLY valid JSON with these EXACT 8 keys:
+"summary", "behaviorIndicators", "proficiencyLevels", "developmentActions", "risksIfMissing", "risksIfOverused", "measurementMethods", "commonMisconceptions"`;
+
+    const completion = await openai.chat.completions.create({
+      model: config.modelName || 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content: 'Respond with VALID JSON ONLY. No markdown, no explanations, no extra text. Every string must be properly escaped with double quotes.'
+        },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.05,  // 🔥 EVEN LOWER
+      max_tokens: 3000,
+      response_format: { type: 'json_object' }
+    });
+
+    const responseTime = Date.now() - startTime;
+    let generatedText = completion.choices[0].message.content || '';
+
+    // 🔥 IMPROVED JSON REPAIR
+    let detailData;
+    try {
+      generatedText = generatedText
+        .trim()
+        .replace(/^```json\s*/g, '')
+        .replace(/\s*```$/g, '')
+        .replace(/^json\s*/gi, '')
+        .trim();
+
+      console.log('🔍 RAW (first 500):', generatedText.slice(0, 500));
+      console.log('📏 Length:', generatedText.length);
+
+      detailData = JSON.parse(generatedText);
+      console.log('✅ DIRECT PARSE SUCCESS');
+
+    } catch (parseError) {
+      console.error('❌ DIRECT PARSE FAILED');
+      
+      // 🔥 BETTER REGEX - Matches COMPLETE JSON objects only
+      // Look for balanced braces with all required keys
+      const completeJsonMatch = generatedText.match(/\{[\s\S]*?"summary"[\s\S]*?"commonMisconceptions"[\s\S]*\}/);
+      
+      if (completeJsonMatch && completeJsonMatch[0].length > 500) { // Ensure minimum size
+        try {
+          detailData = JSON.parse(completeJsonMatch[0]);
+          console.log('✅ SMART REGEX: Complete JSON extracted');
+        } catch (regexError) {
+          console.error('❌ SMART REGEX FAILED');
+          throw parseError;
+        }
+      } else {
+        // 🔥 ULTIMATE FALLBACK: Return raw text if all else fails
+        console.log('🔄 ULTIMATE FALLBACK: Returning raw text');
+        return res.json({
+          success: true,
+          data: {
+            rawText: generatedText,
+            warning: 'JSON parsing failed, raw response returned',
+            partialData: {}
+          },
+          metadata: {
+            model: config.modelName,
+            tokens: completion.usage?.total_tokens || 0,
+            generationTimeMs: responseTime
+          }
+        });
+      }
+    }
+
+    // 🔥 SIMPLIFIED VALIDATION - Accept partial data
+    const requiredKeys = [
+      'summary', 'behaviorIndicators', 'proficiencyLevels', 
+      'developmentActions', 'risksIfMissing', 'risksIfOverused', 
+      'measurementMethods', 'commonMisconceptions'
+    ];
+
+    const missingKeys = requiredKeys.filter(key => !detailData[key]);
+    if (missingKeys.length === 8) { // All missing = total failure
+      console.error('❌ NO VALID DATA FOUND');
+      throw new Error('No valid competency structure found');
+    }
+
+    console.log('✅ PARTIAL SUCCESS - Missing keys:', missingKeys.length);
+    console.log('✅ Available keys:', Object.keys(detailData));
+
+    // Log and respond
+    const log = new AILog({
+      requestType: 'competency_detail_internal',
+      inputData: { industry, organization, jobRole, competencyName },
+      outputData: detailData,
+      modelUsed: config.modelName,
+      tokensUsed: completion.usage?.total_tokens || 0,
+      responseTimeMs: responseTime,
+      userId: req.user.userId,
+      success: true,
+      metadata: {
+        missingKeys: missingKeys.length,
+        totalKeys: Object.keys(detailData).length
+      }
+    });
+    await log.save();
+
+    res.json({
+      success: true,
+      data: detailData,
+      metadata: {
+        model: config.modelName,
+        tokens: completion.usage?.total_tokens || 0,
+        generationTimeMs: responseTime,
+        missingKeys: missingKeys
+      }
+    });
+
+  } catch (error) {
+    console.error('💥 FINAL ERROR:', error.message);
+    res.status(500).json({
+      error: 'Failed to generate competency detail',
+      message: error.message
+    });
+  }
+});
+
+
 
 export default router;

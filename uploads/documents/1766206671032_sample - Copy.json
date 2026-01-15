@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "obj1": { "name": "Alice", "age": 30 },
+    "obj2": { "city": "New York", "country": "USA" },
+    "obj3": { "role": "Engineer", "level": "Mid" },
+    "obj4": { "active": true, "score": 87.5 },
+    "obj5": { "tags": ["team", "backend"] }
+  },
+  {
+    "id": 2,
+    "obj1": { "name": "Bob", "age": 28 },
+    "obj2": { "city": "London", "country": "UK" },
+    "obj3": { "role": "Designer", "level": "Senior" },
+    "obj4": { "active": true, "score": 92.1 },
+    "obj5": { "tags": ["ui", "ux"] }
+  },
+  {
+    "id": 3,
+    "obj1": { "name": "Charlie", "age": 35 },
+    "obj2": { "city": "Berlin", "country": "Germany" },
+    "obj3": { "role": "Manager", "level": "Senior" },
+    "obj4": { "active": false, "score": 76.3 },
+    "obj5": { "tags": ["lead", "operations"] }
+  },
+  {
+    "id": 4,
+    "obj1": { "name": "Diana", "age": 26 },
+    "obj2": { "city": "Paris", "country": "France" },
+    "obj3": { "role": "Analyst", "level": "Junior" },
+    "obj4": { "active": true, "score": 81.0 },
+    "obj5": { "tags": ["data", "reports"] }
+  },
+  {
+    "id": 5,
+    "obj1": { "name": "Ethan", "age": 32 },
+    "obj2": { "city": "Tokyo", "country": "Japan" },
+    "obj3": { "role": "Engineer", "level": "Senior" },
+    "obj4": { "active": true, "score": 89.4 },
+    "obj5": { "tags": ["frontend", "react"] }
+  },
+  {
+    "id": 6,
+    "obj1": { "name": "Fiona", "age": 29 },
+    "obj2": { "city": "Sydney", "country": "Australia" },
+    "obj3": { "role": "QA", "level": "Mid" },
+    "obj4": { "active": false, "score": 73.9 },
+    "obj5": { "tags": ["testing", "automation"] }
+  },
+  {
+    "id": 7,
+    "obj1": { "name": "George", "age": 41 },
+    "obj2": { "city": "Toronto", "country": "Canada" },
+    "obj3": { "role": "Architect", "level": "Senior" },
+    "obj4": { "active": true, "score": 94.2 },
+    "obj5": { "tags": ["design", "systems"] }
+  },
+  {
+    "id": 8,
+    "obj1": { "name": "Hannah", "age": 24 },
+    "obj2": { "city": "Madrid", "country": "Spain" },
+    "obj3": { "role": "Intern", "level": "Junior" },
+    "obj4": { "active": true, "score": 68.5 },
+    "obj5": { "tags": ["learning", "support"] }
+  },
+  {
+    "id": 9,
+    "obj1": { "name": "Ian", "age": 37 },
+    "obj2": { "city": "Dublin", "country": "Ireland" },
+    "obj3": { "role": "DevOps", "level": "Mid" },
+    "obj4": { "active": true, "score": 88.0 },
+    "obj5": { "tags": ["infra", "ci-cd"] }
+  },
+  {
+    "id": 10,
+    "obj1": { "name": "Julia", "age": 33 },
+    "obj2": { "city": "Rome", "country": "Italy" },
+    "obj3": { "role": "Product Owner", "level": "Senior" },
+    "obj4": { "active": false, "score": 79.2 },
+    "obj5": { "tags": ["backlog", "roadmap"] }
+  },
+  {
+    "id": 11,
+    "obj1": { "name": "Kevin", "age": 27 },
+    "obj2": { "city": "Chicago", "country": "USA" },
+    "obj3": { "role": "Engineer", "level": "Junior" },
+    "obj4": { "active": true, "score": 82.7 },
+    "obj5": { "tags": ["api", "node"] }
+  },
+  {
+    "id": 12,
+    "obj1": { "name": "Laura", "age": 39 },
+    "obj2": { "city": "Zurich", "country": "Switzerland" },
+    "obj3": { "role": "Analyst", "level": "Senior" },
+    "obj4": { "active": true, "score": 91.3 },
+    "obj5": { "tags": ["finance", "kpi"] }
+  },
+  {
+    "id": 13,
+    "obj1": { "name": "Mark", "age": 31 },
+    "obj2": { "city": "Vienna", "country": "Austria" },
+    "obj3": { "role": "Engineer", "level": "Mid" },
+    "obj4": { "active": false, "score": 75.6 },
+    "obj5": { "tags": ["microservices", "java"] }
+  },
+  {
+    "id": 14,
+    "obj1": { "name": "Nina", "age": 29 },
+    "obj2": { "city": "Oslo", "country": "Norway" },
+    "obj3": { "role": "Designer", "level": "Mid" },
+    "obj4": { "active": true, "score": 86.9 },
+    "obj5": { "tags": ["figma", "branding"] }
+  },
+  {
+    "id": 15,
+    "obj1": { "name": "Oscar", "age": 45 },
+    "obj2": { "city": "Stockholm", "country": "Sweden" },
+    "obj3": { "role": "CTO", "level": "Executive" },
+    "obj4": { "active": true, "score": 96.4 },
+    "obj5": { "tags": ["strategy", "leadership"] }
+  },
+  {
+    "id": 16,
+    "obj1": { "name": "Paula", "age": 34 },
+    "obj2": { "city": "Lisbon", "country": "Portugal" },
+    "obj3": { "role": "Scrum Master", "level": "Mid" },
+    "obj4": { "active": true, "score": 84.1 },
+    "obj5": { "tags": ["agile", "ceremonies"] }
+  },
+  {
+    "id": 17,
+    "obj1": { "name": "Quentin", "age": 38 },
+    "obj2": { "city": "Brussels", "country": "Belgium" },
+    "obj3": { "role": "Engineer", "level": "Senior" },
+    "obj4": { "active": false, "score": 77.8 },
+    "obj5": { "tags": ["security", "devsecops"] }
+  },
+  {
+    "id": 18,
+    "obj1": { "name": "Rachel", "age": 25 },
+    "obj2": { "city": "Prague", "country": "Czech Republic" },
+    "obj3": { "role": "Support", "level": "Junior" },
+    "obj4": { "active": true, "score": 80.0 },
+    "obj5": { "tags": ["customer", "helpdesk"] }
+  },
+  {
+    "id": 19,
+    "obj1": { "name": "Samuel", "age": 36 },
+    "obj2": { "city": "Seoul", "country": "South Korea" },
+    "obj3": { "role": "Data Scientist", "level": "Senior" },
+    "obj4": { "active": true, "score": 93.5 },
+    "obj5": { "tags": ["ml", "analytics"] }
+  },
+  {
+    "id": 20,
+    "obj1": { "name": "Tina", "age": 28 },
+    "obj2": { "city": "Singapore", "country": "Singapore" },
+    "obj3": { "role": "Engineer", "level": "Mid" },
+    "obj4": { "active": true, "score": 88.8 },
+    "obj5": { "tags": ["cloud", "kubernetes"] }
+  }
+]

@@ -39,13 +39,13 @@ Competency Name: ${competencyName}
 
 Please provide a detailed competency definition with exactly four fields:
 
-1. **Description**: A clear, professional description of what this competency means in the context of this industry and role (2-3 sentences).
+1. Description: A clear, professional description of what this competency means in the context of this industry and role (2-3 sentences).
 
-2. **Effectively Used**: Describe what it looks like when someone demonstrates this competency well. Focus on observable behaviors and positive outcomes (2-3 sentences).
+2. Effectively Used: Describe what it looks like when someone demonstrates this competency well. Focus on observable behaviors and positive outcomes (2-3 sentences).
 
-3. **Underused**: Describe what happens when someone doesn't use this competency enough or fails to demonstrate it adequately. Include potential negative consequences (2-3 sentences).
+3. Underused: Describe what happens when someone doesn't use this competency enough or fails to demonstrate it adequately. Include potential negative consequences (2-3 sentences).
 
-4. **Overused**: Describe what it looks like when someone relies too heavily on this competency or uses it inappropriately. Explain the potential downsides of overuse (2-3 sentences).
+4. Overused: Describe what it looks like when someone relies too heavily on this competency or uses it inappropriately. Explain the potential downsides of overuse (2-3 sentences).
 
 Return your response in valid JSON format with these exact keys: "description", "effectivelyUsed", "underused", "overused".`;
 
@@ -54,7 +54,8 @@ Return your response in valid JSON format with these exact keys: "description", 
       messages: [
         {
           role: 'system',
-          content: 'You are an expert in organizational development and competency frameworks. You provide clear, professional, and actionable competency definitions.'
+          content:
+            'You are an expert in organizational development and competency frameworks. You provide clear, professional, and actionable competency definitions.'
         },
         {
           role: 'user',

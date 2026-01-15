@@ -4,7 +4,7 @@ const aiLogSchema = new mongoose.Schema({
   requestType: {
     type: String,
     required: true,
-    enum: ['competency', 'idp_suggestion', 'other','playground_test']
+    enum: ['competency', 'idp_suggestion', 'other','playground_test','competency_detail_internal','competency_detail_api']
   },
   inputData: {
     type: mongoose.Schema.Types.Mixed,
